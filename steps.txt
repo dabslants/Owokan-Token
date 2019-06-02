@@ -1,0 +1,11 @@
+Steps to create a truffle project without using a truffle box
+
+ - mkdir xxxx # create director
+ - ls xxxx # navigate into director
+ - truffle init # initialise truffle project in the directory
+ - touch file.txt # create a file 
+ -
+ -
+ -
+ -
+ -
