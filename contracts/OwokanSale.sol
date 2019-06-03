@@ -8,6 +8,7 @@ contract OwokanSale {
     // end sale
 
     // admin
+    // not exposed to the public
     address admin;
 
     // token contrat
