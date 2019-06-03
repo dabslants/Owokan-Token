@@ -58,4 +58,24 @@ contract("Owokan", function(accounts) {
             assert.equal(balance.toNumber(), 750000, 'deducts the amount from sending account');
         });
     });
+
+    it("approves token for delegated transfer", function() {
+        return Owokan.deployed().then(function(instance) {
+            owokanInstance = instance;
+            return owokanInstance.approve.call(accounts[1], 500);
+        }).then(function(success) {
+            assert.equal(success, true, "it retrns true")
+            return owokanInstance.approve(accounts[1], 500);
+        }).then(function(receipt) {
+            assert.equal(receipt.logs.length, 1, "an event is triggered");
+            assert.equal(receipt.logs[0].event, "Approval", "the event type is of 'Approval'");
+            assert.equal(receipt.logs[0].args._owner, accounts[0], "logs the account the owner");
+            assert.equal(receipt.logs[0].args._spender, accounts[1], "logs the account spender");
+            assert.equal(receipt.logs[0].args._value, 500, "logs the amount approved");
+            return owokanInstance.allowance(accounts[0], accounts[1]);
+        }).then(function(allowance) {
+            assert.equal(allowance.toNumber(), 500, 'stores the allowance delegated transfer')
+        });
+    })
+
 });
