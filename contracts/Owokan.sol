@@ -9,8 +9,6 @@ contract Owokan {
     uint256 public totalSupply;
 
     mapping(address => uint256) public balanceOf;
-
-    // allowance mapping
     mapping(address => mapping(address => uint256)) public allowance;
 
     event Transfer(
@@ -19,7 +17,6 @@ contract Owokan {
         uint256 _value
     );
 
-    // approve
     event Approval(
         address indexed _owner,
         address indexed _spender,
@@ -42,19 +39,35 @@ contract Owokan {
         return true;
     }
 
-    // delegated trandfer
-    // approve transfer
     function approve(address _spender, uint256 _value) public returns (bool success) {
-        // allowance
-        // maximum amount an account is allowed to spend on behalf of the owner
         allowance[msg.sender][_spender] = _value;
 
-        // approvement
         emit Approval(msg.sender, _spender, _value);
 
         return true;
     }
 
-    // trandferFrom
+    // transferFrom
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+
+        // requirements _from has enough tokens
+        require(balanceOf[_from] >= _value);
+
+        // require the allowance is big enough for the _value
+        require(allowance[_from][msg.sender] >= _value);
+
+        // change balance
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+
+        // update the allowance
+        allowance[_from][msg.sender] -= _value;
+
+        // call transfer event
+        emit Transfer(_from, _to, _value);
+
+        // return boolean
+        return true;
+    }
 
 }
