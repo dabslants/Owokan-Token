@@ -2,30 +2,39 @@ pragma solidity ^0.5.0;
 
 contract Owokan {
 
-    // name
     string public name = "Owokan";
-
-    // symbol
     string public symbol = "OWO";
-
-    // standard
     string public standard = "Owokan v1.0";
 
     uint256 public totalSupply;
 
-    // hashmap of address balance using the address as key
     mapping(address => uint256) public balanceOf;
 
-    // underscore denotes local variable with a function scope
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
     constructor(uint256 _initialSupply) public {
-
-        // msg.sender will be passed as a metadata to this function
-        // require admin address set
-        /* require(msg.sender); */
-
-        // allocate the initial supply
         balanceOf[msg.sender] = _initialSupply;
-
         totalSupply = _initialSupply;
     }
+
+    // transfer token between two address
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        // trigger exception if the account doesn't have enough
+        require(balanceOf[msg.sender] >= _value);
+
+        // transfer the balance
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+
+        // trigger transfer event
+        emit Transfer(msg.sender, _to, _value);
+
+        // return boolean
+        return true;
+    }
+
 }
