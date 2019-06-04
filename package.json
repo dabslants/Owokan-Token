@@ -1,0 +1,22 @@
+{
+  "name": "owokan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/dabslants/owokan-v1.0.git"
+  },
+  "author": "Dabs Lants <dabslants@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/dabslants/owokan-v1.0/issues"
+  },
+  "homepage": "https://gitlab.com/dabslants/owokan-v1.0#readme"
+}

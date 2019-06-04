@@ -65,4 +65,31 @@ contract('OwokanSale', function(accounts) {
         });
     });
 
-});``
+    it('ends owokan token sale', function() {
+        return Owokan.deployed().then(function(instance) {
+            // grab owokan instance first
+            owokanInstance = instance;
+            return OwokanSale.deployed();
+        }).then(function(instance) {
+            // grab owokanSale instance
+            owokanSaleInstance = instance;
+            // end sale by someone other than admin
+            return owokanSaleInstance.endSale({from: buyer});
+        }).then(assert.fail).catch(function(error) {
+            assert(error.message.indexOf('revert') >= 0, 'must be admin to end this sale');
+            // send sale as admin
+            return owokanSaleInstance.endSale({from: admin});
+        }).then(function(receipt) {
+            // receipt
+            // transfer all remaining tokens to the admin
+            return owokanInstance.balanceOf(admin);
+        }).then(function(balance) {
+            assert.equal(balance.toNumber(), 999990, 'returns all unsold owokan token to admin')
+            // check that the contract has zero balance
+            return web3.eth.getBalance(owokanSaleInstance.address);
+        }).then(function(balance) {
+            assert.equal(balance, 0, 'no balance in owokan sale address');
+        });
+    })
+
+});
