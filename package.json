@@ -17,15 +17,19 @@
   "author": "Dabs Lants <dabslants@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "lite-ser ver": "^2.5.3"
+    "lite-ser ver": "^2.5.3",
+    "dotenv": "^8.0.0",
+    "truffle-hdwallet-provider": "^1.0.10"
   },
   "bugs": {
     "url": "https://gitlab.com/dabslants/owokan-v1.0/issues"
   },
   "homepage": "https://gitlab.com/dabslants/owokan-v1.0#readme",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "lite-server": "^2.5.3",
     "truffle-contract": "^4.0.19",
+    "truffle-hdwallet-provider": "^1.0.10",
     "web3": "github:ethereum/web3.js"
   }
 }

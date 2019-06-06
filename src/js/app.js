@@ -3,7 +3,7 @@ App = {
     contracts: {},
     loading: false,
     tokenPrice: 1000000000000000,
-    tokensAvailable: 800000,
+    tokensAvailable: 500000,
 
     init: function() {
         console.log("App initialized...");
@@ -65,7 +65,7 @@ App = {
     },
 
     // listen for events emitted by contracts
-    listenForEvents: function() {
+    listenForEvents: () => {
         App.contracts.OwokanSale.deployed().then(function(instance) {
             instance.Sell({}, {
                 fromBlock: 0,
