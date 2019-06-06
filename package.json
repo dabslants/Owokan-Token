@@ -1,13 +1,14 @@
 {
-  "name": "owokan",
+  "name": "owokan-token-sale",
   "version": "1.0.0",
-  "description": "",
+  "description": "Owokan Token Sale ICO",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -15,8 +16,16 @@
   },
   "author": "Dabs Lants <dabslants@gmail.com>",
   "license": "ISC",
+  "devDependencies": {
+    "lite-ser ver": "^2.5.3"
+  },
   "bugs": {
     "url": "https://gitlab.com/dabslants/owokan-v1.0/issues"
   },
-  "homepage": "https://gitlab.com/dabslants/owokan-v1.0#readme"
+  "homepage": "https://gitlab.com/dabslants/owokan-v1.0#readme",
+  "dependencies": {
+    "lite-server": "^2.5.3",
+    "truffle-contract": "^4.0.19",
+    "web3": "github:ethereum/web3.js"
+  }
 }

@@ -45,7 +45,7 @@ contract('OwokanSale', function(accounts) {
             assert.equal(receipt.logs[0].event, "Sell", "the event type is of 'Sell'");
             assert.equal(receipt.logs[0].args._buyer, buyer, "logs the account that bought tokens");
             assert.equal(receipt.logs[0].args._amount, numberOfTokens, "logs the number of tokens bought");
-            return owokanSaleInstance.tokenSold();
+            return owokanSaleInstance.tokensSold();
         }).then(function(amount) {
             assert.equal(amount.toNumber(), numberOfTokens, ' increments the number of tokens sold');
             return owokanInstance.balanceOf(owokanSaleInstance.address);

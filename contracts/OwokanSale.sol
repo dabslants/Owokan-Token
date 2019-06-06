@@ -8,7 +8,7 @@ contract OwokanSale {
     Owokan public tokenContract;
     uint256 public tokenPrice;
 
-    uint256 public tokenSold;
+    uint256 public tokensSold;
 
     event Sell(address _buyer, uint256 _amount);
 
@@ -29,7 +29,7 @@ contract OwokanSale {
         require(tokenContract.balanceOf(address(this)) >= _numberOfTokens);
         require(tokenContract.transfer(msg.sender, _numberOfTokens));
 
-        tokenSold += _numberOfTokens;
+        tokensSold += _numberOfTokens;
 
         emit Sell(msg.sender, _numberOfTokens);
     }
